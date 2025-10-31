@@ -1,0 +1,35 @@
+const express= require('express');
+const app=express();
+const mongoose = require('mongoose');
+const dotenv= require('dotenv');
+const User = require('./models/user.js') ;
+const router = require('./routes/auth.js');
+app.use(express.json()); // JSON body parse karega
+
+dotenv.config();
+mongoose.connect(process.env.MONGODB_URI).
+then(()=>{
+    console.log("mongodb connected");
+})
+.catch(()=>{
+    console.log("error connceting mongodb");
+})
+const middleware=(req,res,next)=>{
+    console.log(`request came from ${req.method} and url=${req.url}`);
+    next();
+}
+
+// app.use(middleware);
+app.get('/',middleware,(req,res,next)=>{
+    res.send("HI");
+});
+app.get('/about',(req,res)=>{
+    res.send("this is about page")
+});
+
+app.use('/api',router);
+
+const PORT = process.env.PORT;
+app.listen(PORT , ()=>{
+    console.log(`server running at port ${PORT}`);
+})
