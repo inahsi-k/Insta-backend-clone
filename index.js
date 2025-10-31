@@ -13,8 +13,8 @@ mongoose.connect(process.env.MONGODB_URI).
 then(()=>{
     console.log("mongodb connected successfully");
 })
-.catch(()=>{
-    console.log("error connceting mongodb");
+.catch((e)=>{
+    console.log(`error connceting mongodb:${e}`);
 })
 const middleware=(req,res,next)=>{
     console.log(`request came from ${req.method} and url=${req.url}`);
