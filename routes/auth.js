@@ -2,12 +2,19 @@ const express=require('express');
 const bcrypt=require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const USER = require('../models/user');
-
+const jwt= require('jsonwebtoken');
+const requireLogin = require('../middleware/requireLogin')
 const router=express.Router();
 
 router.get('/',(req,res)=>{
     res.send("Hello from route")
 })
+
+
+router.get('/protected',requireLogin,(req,res)=>{
+    res.send("only for login user")
+})
+
 
 router.post('/signup',[
     body('name').isLength({min:3}).withMessage('Nmae >=3 chars'),
@@ -46,7 +53,8 @@ router.post('/login',(req,res)=>{
         }
         bcrypt.compare(password,saveduser.password).then(match=>{
             if(match){
-                res.send("successfully signed in")
+                const token = jwt.sign({_id:saveduser._id},process.env.JWT_SECRET)
+                res.json({token})
             }
             else{
                 res.status(422).json({error:"invalid email or password"})
