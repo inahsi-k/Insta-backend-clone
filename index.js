@@ -1,7 +1,9 @@
+const dotenv= require('dotenv');
+dotenv.config();
 const express= require('express');
 const app=express();
 const mongoose = require('mongoose');
-const dotenv= require('dotenv');
+
 const User = require('./models/user.js') ;
 const router = require('./routes/auth.js');
 app.use(express.json()); // JSON body parse karega
