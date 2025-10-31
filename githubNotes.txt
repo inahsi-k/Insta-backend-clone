@@ -1,0 +1,1 @@
+git pull -remote se local mein changes dikhane k liye
