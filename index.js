@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const User = require('./models/user.js') ;
 const router = require('./routes/auth.js');
+const postrouter = require('./routes/post.js');
 app.use(express.json()); // JSON body parse karega
 
 dotenv.config();
@@ -30,7 +31,7 @@ app.get('/about',(req,res)=>{
 });
 
 app.use('/api',router);
-
+app.use('/',postrouter);
 const PORT = process.env.PORT;
 app.listen(PORT , ()=>{
     console.log(`server running at port ${PORT}`);
