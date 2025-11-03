@@ -1,0 +1,7 @@
+Referencing krne ke liye:-
+const {ObjectId} = mongoose.Schema.Types
+postedBy:{
+        type:ObjectId,
+        ref:"User"
+},
+

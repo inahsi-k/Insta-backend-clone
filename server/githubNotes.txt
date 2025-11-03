@@ -1,0 +1,6 @@
+git remote -v => btata hai clone ka remote repo kaun sa h (kahan se clone hua h)
+git checkout -b <branch name> => nya branch bna ke switch krne ke liye
+
+
+pushed file ko .gitognore mei daalna aur sochna ki wo ab nhi dikheg-> glt baat 
+uske liye git rm --cached package-lock.json -> ab track rakhna band kr dega
