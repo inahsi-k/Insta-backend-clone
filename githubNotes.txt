@@ -1,0 +1,3 @@
+git remote -v => btata hai clone ka remote repo kaun sa h (kahan se clone hua h)
+git checkout -b <branch name> => nya branch bna ke switch krne ke liye
+git pull -remote se local mein changes dikhane k liye
