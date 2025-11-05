@@ -1,7 +1,7 @@
 const express=require('express');
 const bcrypt=require('bcrypt');
 const { body, validationResult } = require('express-validator');
-const USER = require('../models/user');
+const User = require('../models/user');
 const jwt= require('jsonwebtoken');
 const requireLogin = require('../middleware/requireLogin')
 const router=express.Router();
@@ -26,12 +26,12 @@ router.post('/signup',[
         return res.status(400).json({error:errors.array()});
     }
     const {name,email,password} = req.body;
-    USER.findOne({email}).then((saveduser)=>{
+    User.findOne({email}).then((saveduser)=>{
         if(saveduser){
             return res.status(422).json({error:"user already exist with this email"});
         }
         bcrypt.hash(password,12).then(hashedpassword=>{
-            const user = new USER({
+            const user = new User({
                 email,name,password:hashedpassword
             })
             user.save().then(()=>{
@@ -45,16 +45,27 @@ router.post('/signup',[
     })
 })
 
-router.post('/login',(req,res)=>{
+router.post('/signin',(req,res)=>{
     const{email,password}=req.body;
-    USER.findOne({email}).then(saveduser=>{
+    console.log("Received signin request for:", email);
+    User.findOne({email}).then(saveduser=>{
+        console.log("Found user:", saveduser);
         if(!saveduser){
             return res.status(400).json({success:false,message:"User doesnt exist"});
         }
         bcrypt.compare(password,saveduser.password).then(match=>{
             if(match){
+                 console.log("Password match result:", match);
                 const token = jwt.sign({_id:saveduser._id},process.env.JWT_SECRET)
-                res.json({token})
+                res.json({
+                token,
+                user: {
+                    _id: saveduser._id,
+                    name: saveduser.name,
+                    email: saveduser.email
+                }
+                });
+
             }
             else{
                 res.status(422).json({error:"invalid email or password"})

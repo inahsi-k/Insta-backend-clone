@@ -13,9 +13,9 @@ const postSchema = new mongoose.Schema({
         type:ObjectId,
         ref:"User"
     },
-    photo:{
+    image:{
         type:String,
-        default:"No photo"
+        required:true
     }
 })
 

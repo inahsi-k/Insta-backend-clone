@@ -1,4 +1,5 @@
 const dotenv= require('dotenv');
+const cors = require('cors')
 dotenv.config();
 const express= require('express');
 const app=express();
@@ -7,6 +8,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user.js') ;
 const router = require('./routes/auth.js');
 const postrouter = require('./routes/post.js');
+app.use(cors());
 app.use(express.json()); // JSON body parse karega
 
 dotenv.config();

@@ -1,0 +1,92 @@
+a{
+  color: black !important;
+
+}
+body {
+  background-color: #fafafa;
+  font-family: "Poppins", sans-serif;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.home-card {
+  width: 500px;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Header section */
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #efefef;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Image section */
+.card-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Content section */
+.card-content {
+  padding: 10px 15px;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.material-icons {
+  cursor: pointer;
+  font-size: 24px;
+  color: #262626;
+}
+
+.material-icons:hover {
+  color: #ed4956;
+}
+
+.card-content h6,
+.card-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.card-content input {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #efefef;
+  padding: 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+#toast-container{
+  top: 30px;
+  right: 20px;
+  left: auto !important;
+}
